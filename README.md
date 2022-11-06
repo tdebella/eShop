@@ -1,6 +1,6 @@
 # eShop - MERN stack Ecommerce Website
 
-eShop is the action of selling & purchasing goods or services via the internet(online shopping
+    eShop is the act of selling & purchasing goods or services via the internet(online shopping
 
 ## MERN stack
 
@@ -28,13 +28,13 @@ eShop is the action of selling & purchasing goods or services via the internet(o
 
 - MongoDB: mongo DB retrieves the data & return it to any express.js.
 
-## eShop / e-commerce
+## eShop
 
 ### Sample
 
-- Sample Users in database: Admin and Customer
+- Users in database: Admin and Customer
 
-- Sample Products in mongo DB: Shirts & pants (4 products in data.js file)
+- Products in mongo DB: Shirts & pants (4 products in data.js file)
 
 ### e-commerce website basic features
 
@@ -53,9 +53,10 @@ eShop is the action of selling & purchasing goods or services via the internet(o
 
 - useReducer: to handle shopping cart
 
-useState, useEffect, useReducer: to manage state in cmp level
+- useState, useEffect, useReducer: to manage state in cmp level
 
-useContext: manage state (via data flow across cmp tree w/o passing props down manually)
+- useContext: manage state (via data flow across cmp tree w/o passing props down
+  manually)
 
 - Admin Dashboard: to show sales chart, manage products, & handle orders
 
