@@ -1,14 +1,20 @@
 import axios from "axios";
-import { useEffect, useReducer } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useReducer, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
-import Rating from "../components/Rating";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Rating from "../components/Rating";
 import { Helmet } from "react-helmet-async";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { getError } from "../utils";
+import { Store } from "../Store";
+
+
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -24,6 +30,8 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
+  //navigate helps me to navigate to other pages
+  const navigate = useNavigate();
   const params = useParams(); //get the slug in url & define in the screen using react hooks
   const { slug } = params;
 
@@ -41,17 +49,39 @@ function ProductScreen() {
         const result = await axios.get(`/api/products/slug/${slug}`); //to send AJAX req to the address ('/api/products')
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
-        dispatch({ type: "FETCH_FAIL", payload: err.message });
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
     };
     fetchData();
   }, [slug]);
 
+  //define addToCartHandler function
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  //i need to have cert from {state} in react ctx & use it in the addToCartHandler function below to find if the current pdt exists in the cart or not. if it exist, i need to increase the qty by 1, otherwise set the qty to 1
+  const { cart } = state;
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    //the next cmd is AJAX req for the current pdt
+    const { data } = await axios.get(`/api/products/${product._id}`);
+
+    if (data.countInStock < quantity) {
+      window.alert("Sorry. Product is out of stock");
+      return;
+    }
+
+    ctxDispatch({
+      type: "CART_ADD_ITEM",
+      payload: { ...product, quantity }, //i concatinate pdt & qty
+    });
+    navigate("/cart");
+  };
+
   //the ff is the UI part(return section)
   return loading ? (
-    <div>Loading...</div>
+    <LoadingBox />
   ) : error ? (
-    <div>{error}</div>
+    <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     <div>
       <Row>
@@ -101,7 +131,9 @@ function ProductScreen() {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button variant="primary">Add to Cart </Button>
+                      <Button onClick={addToCartHandler} variant="primary">
+                        Add to Cart{" "}
+                      </Button>
                     </div>
                   </ListGroup.Item>
                 )}
