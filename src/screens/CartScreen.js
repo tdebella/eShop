@@ -12,7 +12,7 @@ import axios from "axios";
 // import ListGroupItem from "react-bootstrap/esm/ListGroupItem";
 
 //create CART Screen - it focuses on the UI part of the website. Implement Add to cart functionality: create react context, define reducer, create store provider, implement add to cart button ck handler
-export default function CartScreen() {  
+export default function CartScreen() {
   //navigate helps me to navigate to other pages
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -42,7 +42,7 @@ export default function CartScreen() {
   };
 
   const checkoutHandler = () => {
-    navigate("/signin?redirect=/shipping"); 
+    navigate("/signin?redirect=/shipping");
   };
 
   //a = accumulator  c= current value?

@@ -1,70 +1,80 @@
 # eShop - MERN stack Ecommerce Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+eShop is the action of selling & purchasing goods or services via the internet(online shopping
 
-## Available Scripts
+## MERN stack
 
-In the project directory, you can run:
+    Incorporates 4 open-source technologies that gives an end-end frameworks
 
-### `npm start`
+- Mongo DB: stores data(json format). It sends & retrieve data in database
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  - mongoose: connects backend to the database
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- ExpressJS: it create apps & api. It has a built-in Router . it offers tools which
+  makes writing node app more fun & easier
 
-### `npm test`
+- ReactJS: JavaScript library to create functional component & build user interface(UI)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- NodeJS: JS compiler, allowing code run outside the browser. It enables continuous data
+  flow. to create scalable & quick backend RESTful APIs
 
-### `npm run build`
+### Development flow/processes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- The users send their request & react.js processes those requests along with the parses
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- The node.js parses would be requesting it at the server-end.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- The request enters express.js that makes diff DB requests & return several responses.
 
-### `npm run eject`
+- MongoDB: mongo DB retrieves the data & return it to any express.js.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## eShop / e-commerce
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Sample
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Sample Users in database: Admin and Customer
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Sample Products in mongo DB: Shirts & pants (4 products in data.js file)
+
+### e-commerce website basic features
+
+- Authentication - JSON Web Tokens (JWT).
+  (use local storage to store the JWT so that we only allow logged-in users to buy the items). JWT & express middleware: handle authentication(to make payment for orders)
+
+- Options to add, edit, view, and delete items in the store.
+
+- Options to add or remove items from the cart.
+
+- Options to pay and checkout thus create order & emptying the cart.
+
+- Display total bill of the cart & update it when users update the cart
+
+- React hooks: to handle form inputs & backend fetch api
+
+- useReducer: to handle shopping cart
+
+useState, useEffect, useReducer: to manage state in cmp level
+
+useContext: manage state (via data flow across cmp tree w/o passing props down manually)
+
+- Admin Dashboard: to show sales chart, manage products, & handle orders
+
+### Order, payment, shipping
+
+- Order: Customers chose product(s) & place order
+
+- Payment: pay orders using PayPal or Cards
+
+- Shipping: choose shipping address on google map
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
 ### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
 ### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
 ### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Deployment: deploy my site on cloud services & connected to payment
